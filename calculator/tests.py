@@ -23,7 +23,7 @@ class LoanModelTests(TestCase):
         )
 
     def test_loancreation(self):
-        '''Tests if the loan is create successfully.'''
+        '''Tests if the loan is created successfully.'''
         loan = Loan.objects.first()
         self.assertIsNotNone(loan)
         print("Loan created.")
