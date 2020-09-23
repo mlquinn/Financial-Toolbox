@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.timezone import now
 
 class Loan(models.Model):
     title = models.CharField(max_length=75)
@@ -15,11 +16,16 @@ class Loan(models.Model):
 class Payment(models.Model):
     loan_id = models.ForeignKey(Loan, on_delete=models.CASCADE)
     payment_amount = models.FloatField()
-    payment_date = models.DateField()
+    payment_date = models.DateField(default=now())
 
     def __str__(self):
         return "Payment - " + self.loan_id.title
 
     def save(self, *args, **kwargs):
-        self.loan_id.current_balance - self.payment_amount
+        try:  
+            loan = Loan.objects.get(title=self.loan_id)
+            loan.current_balance = loan.current_balance - self.payment_amount
+            loan.save() 
+        except  Exception as e:
+            print(e)
         super(Payment, self).save(*args, **kwargs)
