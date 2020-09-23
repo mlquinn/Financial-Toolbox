@@ -16,3 +16,10 @@ class Payment(models.Model):
     loan_id = models.ForeignKey(Loan, on_delete=models.CASCADE)
     payment_amount = models.FloatField()
     payment_date = models.DateField()
+
+    def __str__(self):
+        return "Payment - " + self.loan_id.title
+
+    def save(self, *args, **kwargs):
+        self.loan_id.current_balance - self.payment_amount
+        super(Payment, self).save(*args, **kwargs)
