@@ -23,6 +23,7 @@ class LoanModelTests(TestCase):
         )
 
     def test_loancreation(self):
+        '''Tests if the loan is create successfully.'''
         loan = Loan.objects.first()
         self.assertIsNotNone(loan)
         print("Loan created.")
@@ -34,7 +35,7 @@ class PaymentModelTests(TestCase):
             title="test title",
             description='test desc',
             principle=1000,
-            current_balance=900,
+            current_balance=1000,
             apr=10,
             is_paid=False,
             start_date=now(),
@@ -46,6 +47,17 @@ class PaymentModelTests(TestCase):
         )
 
     def test_paymentcreation(self):
+        '''Tests if the payment creates successfully.'''
         payment=Payment.objects.first()
         self.assertIsNotNone(payment)
         print("Payment created.")
+    
+    def test_paymentlowerscurrentbalance(self):
+        '''Tests if a new payment lowers the current balance of loan.'''
+        loan = Loan.objects.first()
+        start_bal = loan.principle
+        payment = Payment.objects.first().payment_amount
+        bal2 = start_bal - payment
+        current = Loan.objects.first().current_balance
+        self.assertEqual(bal2, current)
+        print("Loan start is : {} Loan balance is: {}.".format(start_bal,current))
