@@ -17,5 +17,12 @@
             <b> Sorry, there are currently no loans to display. </b>
         {% endfor %}
     </div>
+    <div>
+        <a href='{% url 'calculator:loan-new' %}'>
+            <button type='button'>
+            Add new loan
+            </button>
+        </a>
+    </div>
 </article>
 {% endblock %}
