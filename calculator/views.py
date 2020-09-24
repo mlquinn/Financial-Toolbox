@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, TemplateView
+from django.views.generic import ListView, DetailView
 
 from .models import Loan, Payment
 
@@ -13,5 +13,6 @@ class LoanDashView(ListView):
         return context
 
 
-class LoanCaclulatorView(TemplateView):
-    template_name = "calculator/loanview.html"
+class LoanDetailView(DetailView):
+    model = Loan
+    template_name='calculator/loanview.html'

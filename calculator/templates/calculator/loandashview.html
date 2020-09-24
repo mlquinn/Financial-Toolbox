@@ -6,7 +6,12 @@
     <div>
         {% for loan in loans %}
         <div>
-            <p>{{ loan.title }} </p>
+            <a href="{% url 'calculator:loan-detail' loan.pk %}">
+                <div style='border: 1px solid black;'>
+                    <h4>{{ loan.title }}</h4>
+                    <p>{{ loan.description }}</p>
+                </div>
+            </a>
         </div>
         {% empty %}
             <b> Sorry, there are currently no loans to display. </b>
