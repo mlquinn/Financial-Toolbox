@@ -8,7 +8,7 @@ class Loan(models.Model):
     current_balance = models.FloatField()
     apr = models.FloatField()
     is_paid = models.BooleanField(default=False)
-    start_date = models.DateField()
+    start_date = models.DateField(auto_now_add=True, blank=True)
 
     def __str__(self):
         return self.title
@@ -16,7 +16,7 @@ class Loan(models.Model):
 class Payment(models.Model):
     loan_id = models.ForeignKey(Loan, on_delete=models.CASCADE)
     payment_amount = models.FloatField()
-    payment_date = models.DateField(default=now())
+    payment_date = models.DateField(auto_now_add=True, blank=True)
 
     def __str__(self):
         return "Payment - " + self.loan_id.title
