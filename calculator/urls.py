@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import LoanCaclulatorView
+from .views import LoanDashView, LoanCaclulatorView
 app_name='calculator'
 urlpatterns = [
-    path('', LoanCaclulatorView.as_view(), name='loan-view'),
+    path('dash/', LoanDashView.as_view(), name='loan-dash'),
 ]

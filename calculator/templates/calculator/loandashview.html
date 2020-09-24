@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<article>
+    <h1> Loan Dash </h1>
+    <div>
+        {% for loan in loans %}
+        <div>
+            <p>{{ loan.title }}
+        </div>
+        {% empty %}
+            <b> Sorry, there are currently no loans to display. </b>
+        {% endfor %}
+    </div>
+</article>
+{% endblock %}
